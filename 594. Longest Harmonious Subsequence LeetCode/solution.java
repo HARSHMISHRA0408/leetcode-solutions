@@ -4,14 +4,30 @@ class Main {
 
     public static void main(String[] args) {
 
-        int[] nums = {1, 2, 3};
+        int[] nums = {1,2,3,4};
+        
+        int maxSize = 0;
 
         Vector<Vector<Integer>> ans = new Vector<>();
         Vector<Integer> temp = new Vector<>();
 
         subseq(nums, temp, ans, 0);
+        
+        for(int i=0; i<ans.size(); i++){
+     
+            if (ans.get(i).isEmpty()) {
+             continue;
+            }
 
-        System.out.println(ans);
+            int min = Collections.min(ans.get(i));
+            int max = Collections.max(ans.get(i));
+            
+            if(max - min == 1 && ans.get(i).size() > maxSize ){
+                maxSize = ans.get(i).size();
+            }
+        }
+
+        System.out.println(maxSize);
     }
 
     public static void subseq(int[] nums,
