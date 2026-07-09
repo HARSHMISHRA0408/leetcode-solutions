@@ -1,3 +1,4 @@
+//To understand some concepts below this optimized solution is added
 import java.util.*;
 
 class Main {
@@ -51,4 +52,31 @@ class Main {
         // Backtracking
         temp.remove(temp.size() - 1);
     }
+}
+
+
+//under time limit 
+
+import java.util.*;
+
+class Solution {
+    public int findLHS(int[] nums) {
+        
+        HashMap<Integer , Integer> map = new HashMap<>();
+
+        for(int num : nums){
+            map.put(num, map.getOrDefault(num , 0)+1);
+        }
+
+        int ans = 0;
+
+        for(int key : map.keySet()){
+            if(map.containsKey(key+1)){
+
+                ans = Math.max(ans , map.get(key) + map.get(key+1));
+
+            }
+        }
+        return ans;
+    }  
 }
